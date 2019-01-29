@@ -5,44 +5,18 @@ function matrixGenerator(rows, columns) {
     for (let j = 0; j < columns; j++) {
       matrix[i].push(Math.floor(Math.random() * 100))
     }
-    matrix[i] = selectionSort(matrix[i]);
+    matrix[i].sort(compareNumbers)
   }
-  matrix = matSelectionSort(matrix);
+  matrix.sort(compareArray);
   return matrix;
 }
 
-function selectionSort(array) {
-  for (let i = 0; i < array.length; i++) {
-    let smallest = i;
-    for (let j = i + 1; j < array.length; j++) {
-      if (array[j] < array[smallest]) {
-        smallest = j;
-      }
-    }
-    if (i !== smallest) {
-      let temp = array[i];
-      array[i] = array[smallest];
-      array[smallest] = temp;
-    }
-  }
-  return array;
+function compareNumbers(a, b) {
+  return a - b;
 }
 
-function matSelectionSort(matrix) {
-  for (let i = 0; i < matrix.length; i++) {
-    let smallest = i;
-    for (let j = i + 1; j < matrix.length; j++) {
-      if (matrix[j][0] < matrix[smallest][0]) {
-        smallest = j;
-      }
-    }
-    if (i !== smallest) {
-      let temp = matrix[i];
-      matrix[i] = matrix[smallest];
-      matrix[smallest] = temp;
-    }
-  }
-  return matrix;
+function compareArray(a, b) {
+  return a[0] - b[0];
 }
 
 module.exports = matrixGenerator;
